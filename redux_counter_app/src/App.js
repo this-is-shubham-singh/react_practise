@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { decreement, increement } from "./features/Counterslice";
 
-function App() {
+const App = () => {
+  const current_value = useSelector((state) => state.counter.value);
+  const dispatch = useDispatch();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <button onClick={() => dispatch(increement())}>plus</button>
+      <div>{current_value}</div>
+      <button onClick={() => dispatch(decreement())}>minus</button>
     </div>
   );
-}
+};
 
 export default App;
