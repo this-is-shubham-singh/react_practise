@@ -1,36 +1,101 @@
+:root {
+  --bg-color: white;
+  --font-color: black;
+  --btn-color: #357ac8;
+  --card-bg-color: #ffffff;
+  --nav-btn-color: #e4e6eb;
+}
+
 .page {
-  width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f0f0f0;
 }
 
 .container {
+  background-color: #ffffff;
   width: 400px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  height: 360px;
 }
 
-.nav {
+.navigation {
   display: flex;
-  justify-content: space-between;
+  gap: 1.5px;
   margin-bottom: 20px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.navigation span {
+  cursor: pointer;
+  padding: 6px 12px;
+  background-color: #e4e6eb;
+  border-radius: 6px;
+  font-weight: 500;
 }
 
 .section {
-  display: none;
+  margin-top: 60px;
 }
 
-.section.visible {
+.section h2 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #333;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
   display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
 }
 
-.btns {
-  display: flex;
-  justify-content: space-between;
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.checkbox-group label,
+.radio-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.buttons {
   margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #4a90e2;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background-color: #357ac8;
+}
+
+.navlinks {
+  text-decoration: none;
 }

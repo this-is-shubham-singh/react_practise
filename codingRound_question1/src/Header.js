@@ -1,12 +1,19 @@
 import React from "react";
 import "./App.css";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div class="nav">
-      <button>Profile</button>
-      <button>Interest</button>
-      <button>Settings</button>
+    <div className="navigation">
+      <NavLink to={"/"} className="navlinks">
+        <span>Profile</span>
+      </NavLink>
+      <NavLink to={"/interest"} className="navlinks">
+        <span>Interest</span>
+      </NavLink>
+      <NavLink to={"/settings"} className="navlinks">
+        <span>Settings</span>
+      </NavLink>
     </div>
   );
 };
