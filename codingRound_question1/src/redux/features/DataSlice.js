@@ -22,7 +22,7 @@ const DataSlice = createSlice({
       state.profile.email = action.payload.email;
     },
     addInterestDetails: (state, action) => {
-      state.interest.frontend = action.payload.front;
+      state.interest.frontend = action.payload.frontend;
       state.interest.backend = action.payload.backend;
       state.interest.fullstack = action.payload.fullstack;
       state.interest.favSport = action.payload.favSport;

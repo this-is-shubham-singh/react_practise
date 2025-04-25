@@ -1,0 +1,19 @@
+.outer-cont {
+  border: 1px solid white;
+  width: 300px;
+  height: 20px;
+  border-radius: 30px;
+  margin: 10px;
+}
+
+.inner-cont {
+  background-color: greenyellow;
+  height: 100%;
+  border-radius: inherit;
+  text-align: center;
+}
+
+.num {
+  position: absolute;
+  left: 140px;
+}

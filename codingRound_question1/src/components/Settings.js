@@ -1,18 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Settings = () => {
   const navigate = useNavigate();
-  // const mode = useSelector((state) => state.dataApp.settings.mode);
 
-  const [mode, setMode] = useState("light");
+  const [currentMode, setCurrentMode] = useState();
+  const pageData = useSelector((state) => state.dataApp);
 
   function handleSubmit() {
-    console.log(mode);
+    console.log(pageData);
+  }
 
-    navigate("");
+  useEffect(() => {
+    const localTheme = localStorage.getItem("theme");
+    setCurrentMode(localTheme);
+  }, []);
+
+  function setTheme(e) {
+    localStorage.setItem("theme", e.target.value);
+
+    setCurrentMode(e.target.value);
+
+    document.documentElement.setAttribute("data-theme", e.target.value);
   }
 
   return (
@@ -23,7 +34,8 @@ const Settings = () => {
             type="radio"
             name="theme"
             value="dark"
-            onChange={(e) => setMode(e.target.value)}
+            checked={currentMode == "dark"}
+            onChange={(e) => setTheme(e)}
           />{" "}
           Dark
         </label>
@@ -32,7 +44,8 @@ const Settings = () => {
             type="radio"
             name="theme"
             value="light"
-            onChange={(e) => setMode(e.target.value)}
+            checked={currentMode == "light"}
+            onChange={(e) => setTheme(e)}
           />{" "}
           Light
         </label>

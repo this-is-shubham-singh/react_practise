@@ -2,20 +2,17 @@ import React, { useState } from "react";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { addInterestDetails } from "../redux/features/DataSlice";
 
 const Interest = () => {
   const navigate = useNavigate();
 
-  const [interestData, setInterestData] = useState({
-    frontend: false,
-    backend: false,
-    fullstack: false,
-    favSport: "",
-  });
+  const interestData = useSelector((state) => state.dataApp.interest);
+  // console.log(interestData);
+  const dispatch = useDispatch();
 
   function handleSubmit() {
-    console.log(interestData);
-
     if (
       !interestData.frontend &&
       !interestData.backend &&
@@ -25,6 +22,14 @@ const Interest = () => {
     } else if (interestData.favSport == "") {
       toast.error("select a favorite sport");
     } else {
+      dispatch(
+        addInterestDetails({
+          frontend: interestData.frontend,
+          backend: interestData.backend,
+          fullstack: interestData.fullstack,
+          favSport: interestData.favSport,
+        })
+      );
       navigate("/settings");
     }
   }
@@ -38,7 +43,12 @@ const Interest = () => {
             type="checkbox"
             checked={interestData.frontend}
             onChange={(e) =>
-              setInterestData({ ...interestData, frontend: e.target.checked })
+              dispatch(
+                addInterestDetails({
+                  ...interestData,
+                  frontend: e.target.checked,
+                })
+              )
             }
           />{" "}
           Frontend
@@ -48,7 +58,12 @@ const Interest = () => {
             type="checkbox"
             checked={interestData.backend}
             onChange={(e) =>
-              setInterestData({ ...interestData, backend: e.target.checked })
+              dispatch(
+                addInterestDetails({
+                  ...interestData,
+                  backend: e.target.checked,
+                })
+              )
             }
           />{" "}
           Backend
@@ -58,7 +73,12 @@ const Interest = () => {
             type="checkbox"
             checked={interestData.fullstack}
             onChange={(e) =>
-              setInterestData({ ...interestData, fullstack: e.target.checked })
+              dispatch(
+                addInterestDetails({
+                  ...interestData,
+                  fullstack: e.target.checked,
+                })
+              )
             }
           />{" "}
           Fullstack
@@ -69,7 +89,12 @@ const Interest = () => {
         <select
           id="sports"
           onChange={(e) =>
-            setInterestData({ ...interestData, favSport: e.target.value })
+            dispatch(
+              addInterestDetails({
+                ...interestData,
+                favSport: e.target.checked,
+              })
+            )
           }
           value={interestData.favSport}
         >

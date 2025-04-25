@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { addProfileDetails } from "../redux/features/DataSlice";
 
 const Profile = () => {
   const navigate = useNavigate();
 
-  const [data, setData] = useState({
-    name: "",
-    age: "",
-    email: "",
-  });
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.dataApp.profile);
+  // console.log(data);
 
   function nameValidation(value) {
     if (value.length < 3 || value.length > 100) {
@@ -32,14 +32,15 @@ const Profile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("form submitted");
-    console.log(data);
 
     if (!nameValidation(data.name)) {
       toast.error("invalid name");
     } else if (data.age < 11 || data.age > 150) {
       toast.error("invalid age");
     } else {
+      dispatch(
+        addProfileDetails({ name: data.name, age: data.age, email: data.email })
+      );
       navigate("/interest");
     }
   };
@@ -52,7 +53,9 @@ const Profile = () => {
           type="text"
           id="name"
           required
-          onChange={(e) => setData({ ...data, name: e.target.value })}
+          onChange={(e) =>
+            dispatch(addProfileDetails({ ...data, name: e.target.value }))
+          }
           value={data.name}
         />
       </div>
@@ -62,7 +65,10 @@ const Profile = () => {
           type="number"
           id="age"
           required
-          onChange={(e) => setData({ ...data, age: e.target.value })}
+          value={data.age}
+          onChange={(e) =>
+            dispatch(addProfileDetails({ ...data, age: e.target.value }))
+          }
         />
       </div>
       <div className="input-group">
@@ -71,7 +77,10 @@ const Profile = () => {
           type="email"
           id="email"
           required
-          onChange={(e) => setData({ ...data, email: e.target.value })}
+          value={data.email}
+          onChange={(e) =>
+            dispatch(addProfileDetails({ ...data, email: e.target.value }))
+          }
         />
       </div>
       <div className="buttons">

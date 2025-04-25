@@ -6,15 +6,25 @@
   --nav-btn-color: #e4e6eb;
 }
 
+[data-theme="dark"] {
+  --bg-color: black;
+  --font-color: white;
+  --btn-color: #6a6a6a;
+  --card-bg-color: #373737;
+  --nav-btn-color: #6a6a6a;
+}
+
 .page {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: var(--bg-color);
+  color: var(--font-color);
 }
 
 .container {
-  background-color: #ffffff;
+  background-color: var(--card-bg-color);
   width: 400px;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -35,7 +45,7 @@
 .navigation span {
   cursor: pointer;
   padding: 6px 12px;
-  background-color: #e4e6eb;
+  background-color: var(--nav-btn-color);
   border-radius: 6px;
   font-weight: 500;
 }
@@ -47,7 +57,7 @@
 .section h2 {
   margin-bottom: 10px;
   font-size: 20px;
-  color: #333;
+  color: var(--font-color);
 }
 
 .input-group {
@@ -86,7 +96,7 @@
   padding: 8px 16px;
   border: none;
   border-radius: 6px;
-  background-color: #4a90e2;
+  background-color: var(--btn-color);
   color: white;
   cursor: pointer;
   font-weight: bold;
@@ -98,4 +108,5 @@
 
 .navlinks {
   text-decoration: none;
+  color: inherit;
 }
